@@ -1,0 +1,20 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #000;
+}
+
+#dvd-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.dvd-logo {
+    position: absolute;
+    width: 100px;
+}
