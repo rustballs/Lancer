@@ -42,7 +42,17 @@ class DVDLogo {
         if ((this.x <= 0 && this.y <= 0) || (this.x + this.width >= canvas.width && this.y <= 0) ||
             (this.x <= 0 && this.y + this.height >= canvas.height) || (this.x + this.width >= canvas.width && this.y + this.height >= canvas.height)) {
             cornerSound.play();
-            const newLogo = new DVDLogo(Math.random() * (canvas.width - this.width), Math.random() * (canvas.height - this.height), this.width, this.height, this.dx, this.dy, this.img.src);
+
+            // Spawn a new DVD logo at a random corner
+            const corners = [
+                { x: 0, y: 0 },
+                { x: canvas.width - this.width, y: 0 },
+                { x: 0, y: canvas.height - this.height },
+                { x: canvas.width - this.width, y: canvas.height - this.height }
+            ];
+            const randomCorner = corners[Math.floor(Math.random() * corners.length)];
+            const randomSpeed = () => (Math.random() > 0.5 ? 1 : -1) * (Math.random() * 2 + 1);
+            const newLogo = new DVDLogo(randomCorner.x, randomCorner.y, this.width, this.height, randomSpeed(), randomSpeed(), this.img.src);
             dvdLogos.push(newLogo);
         }
     }
