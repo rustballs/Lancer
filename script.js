@@ -20,11 +20,13 @@ class DVDLogo {
         this.x += this.dx;
         this.y += this.dy;
 
+        let hitCorner = false;
+
         if (this.x <= 0 || this.x >= window.innerWidth - this.img.clientWidth) {
             this.dx = -this.dx;
             this.bounceSound.play();
             if (this.x <= 0 || this.x >= window.innerWidth - this.img.clientWidth) {
-                this.cornerAction();
+                hitCorner = true;
             }
         }
 
@@ -32,8 +34,12 @@ class DVDLogo {
             this.dy = -this.dy;
             this.bounceSound.play();
             if (this.y <= 0 || this.y >= window.innerHeight - this.img.clientHeight) {
-                this.cornerAction();
+                hitCorner = true;
             }
+        }
+
+        if (hitCorner) {
+            this.cornerAction();
         }
 
         this.img.style.left = `${this.x}px`;
